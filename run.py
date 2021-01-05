@@ -9,6 +9,7 @@ from models.models import *
 
 # APIs
 from api.conversation_api import ConversationAPI
+from prometheus_flask_exporter import PrometheusMetrics
 
 import os
 
@@ -16,6 +17,7 @@ print("Running...", flush=True)
 
 app = Flask(__name__)
 api = Api(app)
+metrics = PrometheusMetrics(app)
 app.config["JSONIFY_PRETTYPRINT_REGULAR"] = False
 app.config["DEBUG"] = True
 

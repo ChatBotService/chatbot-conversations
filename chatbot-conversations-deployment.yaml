@@ -1,0 +1,27 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: chatbot-conversations-deployment
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: chatbot-conversations
+  template:
+    metadata:
+      labels:
+        app: chatbot-conversations
+    spec:
+      containers:
+        - image: jurebevc/chatbot-conversations:1.0.0-2.1
+          name: chatbot-conversations
+          env:
+            - name: DB_PATH
+              valueFrom:
+                secretKeyRef:
+                  name: db-path
+                  key: db-path
+          ports:
+            - containerPort: 8082
+              name: server
+              protocol: TCP
