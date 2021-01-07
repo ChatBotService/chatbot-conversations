@@ -29,7 +29,7 @@ class ConversationAPI(Resource):
                 name=uploaded_file.filename,
                 data=file_blob,
                 data_size=len(file_blob),
-                user_id = 0) #TODO: Hardcoded user id
+                user_id = 1) #TODO: Hardcoded user id
             db.session.add(conversation_file)
             db.session.commit()
         return Response(status=200)
